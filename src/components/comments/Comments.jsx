@@ -9,7 +9,7 @@ import { useState } from "react";
 
 const fetcher = async (url) => {
   const res = await fetch(url);
-
+  // console.log(res,'res........')
   const data = await res.json();
 
   if (!res.ok) {
@@ -24,7 +24,7 @@ const Comments = ({ postSlug }) => {
   const { status } = useSession();
 
   const { data, mutate, isLoading } = useSWR(
-		`${process.env.BASE_URL}/api/comments?postSlug=${postSlug}`,
+		`https://blog-app-one-omega.vercel.app/api/comments?postSlug=${postSlug}`,
 		fetcher
   );
 
@@ -64,7 +64,7 @@ const Comments = ({ postSlug }) => {
                   {item?.user?.image && (
                     <Image
                       src={item.user.image}
-                      alt=""
+                      alt="post image"
                       width={50}
                       height={50}
                       className={styles.image}

@@ -27,6 +27,7 @@ const WritePage = () => {
   const [value, setValue] = useState("");
   const [title, setTitle] = useState("");
   const [catSlug, setCatSlug] = useState("");
+  // const [catSlug, setCatSlug] = useState({ __html: 'catSlug.' });
 
   useEffect(() => {
     const storage = getStorage(app);
@@ -62,6 +63,8 @@ const WritePage = () => {
 
     file && upload();
   }, [file]);
+  // console.log('media.....', media)
+  // console.log('media.....', typeof(media))
 
   if (status === "loading") {
     return <div className={styles.loading}>Loading...</div>;
@@ -80,6 +83,7 @@ const WritePage = () => {
       .replace(/^-+|-+$/g, "");
 
   const handleSubmit = async () => {
+    console.log('submiting...')
     const res = await fetch("/api/posts", {
       method: "POST",
       body: JSON.stringify({

@@ -4,9 +4,12 @@ import Image from "next/image";
 import Comments from "@/components/comments/Comments";
 
 const getData = async (slug) => {
-  const res = await fetch(`${process.env.BASE_URL}/api/posts/${slug}`, {
-		cache: 'no-store',
-  });
+  const res = await fetch(
+		`https://blog-app-one-omega.vercel.app/api/posts/${slug}`,
+		{
+			cache: 'no-store',
+		}
+  );
 
   if (!res.ok) {
     throw new Error("Failed");
@@ -19,6 +22,7 @@ const SinglePage = async ({ params }) => {
   const { slug } = params;
 
   const data = await getData(slug);
+  // console.log('data of post ......',data)
   
   return (
     <div className={styles.container}>
